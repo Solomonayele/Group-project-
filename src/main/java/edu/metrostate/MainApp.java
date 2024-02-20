@@ -3,30 +3,17 @@ package edu.metrostate;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
 
 public class MainApp extends Application {
 
-    private final ValueStore store;
-
-    public MainApp() {
-        this.store = new ValueStore();
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("scene.fxml"));
-        BorderPane root = loader.load();
-
-        MainSceneController mainSceneController = loader.getController();
-        mainSceneController.setValueStore(store);
-
-        MainToolBar mainToolBar = new MainToolBar();
-        MainToolBarController mainToolBarController = new MainToolBarController(mainToolBar, store);
-        root.setTop(mainToolBar);
+        VBox root = loader.load();
 
         Scene scene = new Scene(root);
 
