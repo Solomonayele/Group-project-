@@ -1,6 +1,6 @@
 package edu.metrostate;
 
-import javafx.concurrent.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,14 @@ public class Stylist extends Person{
     private List<Service> specialization;
     private List<TimeSlot> availability ;
 
-    private list<Appointment> appointment;
+    private List<Appointment> appointment;
 
-    public  Stylist(String firstName, String lastName, String email, String phoneNumber, String password){
+    public  Stylist(String firstName, String lastName, String email, String phoneNumber, String password) {
         super(firstName,lastName, email, phoneNumber,password);
-        this.specialization = new ArrayList<Service>();
+        this.specialization = new ArrayList<>();
         this.availability = new ArrayList<TimeSlot>();
         this.appointment = new ArrayList<Appointment>();
+
 
 
     }
@@ -30,7 +31,7 @@ public class Stylist extends Person{
         return availability;
 
     }
-    public list<Appointment> getAppointment(){
+    public List<Appointment> getAppointment(){
         return appointment;
     }
     public void setSpecialization(List<Service> specialization){
@@ -40,7 +41,7 @@ public class Stylist extends Person{
         this.availability = availability;
 
    }
-   public void setAppointments(List<Appointment> appointments){
-        this.appointments =appointments;
+   public void setAppointments(List<Appointment> appointment){
+        this.appointment = appointment;
    }
 }
