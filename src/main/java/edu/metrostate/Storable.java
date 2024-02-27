@@ -1,11 +1,11 @@
 package edu.metrostate;
 
 public interface Storable {
-    public int getID();
-    public void setID();
-    public Boolean insert(Object o);
+    void getID();
+    void setID();
+    void insert(Object o);
         //Object must be Connection
-    public Boolean update();
-    public Boolean delete();
+    void update();
+    void delete(Object o);
 
 }
