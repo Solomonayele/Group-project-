@@ -25,6 +25,6 @@ the pane on the right near the bottom there is a dropdown menu labeled "Gradle J
 "Eclipse Temurin (AdoptOpenJDK HotSpot) 17.0.10 aarch64".
 
 After installing the JDK click on the elephant icon on the top right side IntelliJ to synchronize your project and
-dependencies. Once that is complete, ensure that "ICS372" run configuration is selected in the dropdown to the
+dependencies. Once that is complete, ensure that "Salon_App" run configuration is selected in the dropdown to the
 left of the green play button on the top right side of the toolbar and then click the play button. The project will
 compile and then start the application.
