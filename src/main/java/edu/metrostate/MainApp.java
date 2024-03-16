@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
         loadStylesheetIntoScene(scene);
 
-        stage.setTitle("ICS 372 - HelloFX");
+        stage.setTitle("Salon App");
         stage.setScene(scene);
         stage.show();
     }
