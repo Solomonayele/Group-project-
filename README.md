@@ -21,8 +21,8 @@ Open the settings pane by selecting "IntelliJ IDEA -> Preferences" on MacOS and 
 on the left side of the settings pane expand "Build, Execution, Deployment" -> "Build Tools" -> "Gradle". Then in
 the pane on the right near the bottom there is a dropdown menu labeled "Gradle JVM". Click on the dropdown, then on
 "+ Add SDK" -> "Download JDK". In the new popup select 17 for version and then for version select
-"Eclipse Temurin (AdoptOpenJDK HotSpot) 17.0.6". If you have a Mac with Apple Silicon select
-"Eclipse Temurin (AdoptOpenJDK HotSpot) 17.0.6 aarch64".
+"Eclipse Temurin (AdoptOpenJDK HotSpot) 17.0.10". If you have a Mac with Apple Silicon select
+"Eclipse Temurin (AdoptOpenJDK HotSpot) 17.0.10 aarch64".
 
 After installing the JDK click on the elephant icon on the top right side IntelliJ to synchronize your project and
 dependencies. Once that is complete, ensure that "ICS372" run configuration is selected in the dropdown to the
