@@ -4,8 +4,8 @@ The code for this application currently sits in two categories. The classes whic
 application implementation, in its current state: Appointment, Client, Person, Service, Storable, and Stylist. The
 second category represents the class and background work necessary to make a presentable UI. This includes the 
 MainApp class and the fxml and css files. The css and fxml files, in addition to the jpg used for a background
-are contained within the resouces directory in the main folder. The java classes are contained in the Java directory
-within the main directory.
+are contained within the resources directory in the main folder. The java classes are contained in the Java directory
+within the SRC file.
 
 This project is most easily accessible with the Intellij IDEA IDE and has been tested with the 
 [community edition](https://www.jetbrains.com/idea/download).
@@ -27,4 +27,4 @@ the pane on the right near the bottom there is a dropdown menu labeled "Gradle J
 After installing the JDK click on the elephant icon on the top right side IntelliJ to synchronize your project and
 dependencies. Once that is complete, ensure that "Salon_App" run configuration is selected in the dropdown to the
 left of the green play button on the top right side of the toolbar and then click the play button. The project will
-compile and then start the application.
+compile and then start the application. To exit, simply "x" out of the user interface window.

@@ -7,6 +7,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
 
 public class MainApp extends Application {
 
@@ -22,6 +27,17 @@ public class MainApp extends Application {
         stage.setTitle("Salon App");
         stage.setScene(scene);
         stage.show();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(Database.connectionString);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            CloseQuietly.close(connection);
+            }
+
     }
 
     private void loadStylesheetIntoScene(Scene scene) {

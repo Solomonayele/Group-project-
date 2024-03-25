@@ -5,7 +5,7 @@ import  java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Appointment {
+public class    Appointment {
     private int appointmentID;
     private LocalDate datePicker;
     private LocalTime timePicker;
