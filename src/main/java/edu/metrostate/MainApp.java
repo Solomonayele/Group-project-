@@ -17,7 +17,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("appointment.fxml"));
         VBox root = loader.load();
 
         Scene scene = new Scene(root);
