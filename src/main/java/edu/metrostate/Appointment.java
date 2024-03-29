@@ -5,16 +5,14 @@ import  java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.List;
 
-public class    Appointment {
-    private int appointmentID;
+public class Appointment {
     private LocalDate datePicker;
     private LocalTime timePicker;
     private List<Stylist> stylist;
     private List<Service> service;
     private List<Client> client;
 
-    public Appointment(int appointmentID, LocalDate datePicker, LocalTime timePicker, List<Stylist> stylist, List<Service> service, List<Client> client){
-        this.appointmentID = appointmentID;
+    public Appointment(LocalDate datePicker, LocalTime timePicker, List<Stylist> stylist, List<Service> service, List<Client> client){
         this.client = client;
         this.service = service;
         this.stylist = stylist;
@@ -28,10 +26,6 @@ public class    Appointment {
     public LocalDate getDatePicker(){
         return datePicker;
     }
-    public int getAppointmentID(){
-        return appointmentID;
-    }
-
     public List<Stylist> getStylist(){
         return stylist;
     }
@@ -48,10 +42,6 @@ public class    Appointment {
 
     public void setTimePicker(LocalTime timePicker) {
         this.timePicker = timePicker;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
     }
     public void setStylist(List<Stylist> stylist){
         this.stylist = stylist;

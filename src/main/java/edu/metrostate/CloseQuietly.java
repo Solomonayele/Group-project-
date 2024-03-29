@@ -10,7 +10,7 @@ public class CloseQuietly {
                 closeable.close();
             }
         } catch (Exception ex) {
-            // close quietly
+            //do nothing and die quietly
         }
     }
 
@@ -20,7 +20,7 @@ public class CloseQuietly {
                 closeable.close();
             }
         } catch (Exception ex) {
-            // close quietly
+            //do nothing and die quietly
         }
     }
 }

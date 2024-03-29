@@ -2,6 +2,7 @@ package edu.metrostate;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,14 +18,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("appointment.fxml"));
-        VBox root = loader.load();
-
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
         Scene scene = new Scene(root);
-
         loadStylesheetIntoScene(scene);
-
-        stage.setTitle("Salon App");
         stage.setScene(scene);
         stage.show();
 
