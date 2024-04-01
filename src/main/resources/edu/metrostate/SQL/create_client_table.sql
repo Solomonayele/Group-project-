@@ -1,4 +1,4 @@
-CREATE TABLE Client (
+CREATE TABLE IF NOT EXISTS Client (
     clientID INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(50),
     lastName VARCHAR(50),

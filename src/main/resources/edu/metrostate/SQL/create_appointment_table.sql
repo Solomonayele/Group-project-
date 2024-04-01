@@ -1,4 +1,4 @@
-CREATE TABLE Appointment (
+CREATE TABLE IF NOT EXISTS Appointment (
     appointment_date DATE,
     appointment_time TIME,
     stylist_name VARCHAR(255),
