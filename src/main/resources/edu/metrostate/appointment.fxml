@@ -26,7 +26,7 @@
             <DatePicker fx:id="datePicker" layoutX="24.0" layoutY="306.0" onAction="#selectDate" prefHeight="31.0" prefWidth="138.0" promptText="Select Date" />
             <Text fill="#826603" layoutX="250.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start From" wrappingWidth="74.951171875" />
             <Text fill="#826603" layoutX="374.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finish by" />
-            <Button fx:id="next" layoutX="501.0" layoutY="349.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="85.0" style="-fx-background-color: orange;" text="Next" />
+            <Button fx:id="nextButton" layoutX="501.0" layoutY="349.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="85.0" style="-fx-background-color: #826603;" text="Next" />
             <Label layoutX="62.0" layoutY="22.0" />
             <Text fill="#826603" layoutX="191.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" wrappingWidth="158.21630859375">
                 <font>
