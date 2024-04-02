@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 
 //signing up a user, logging them in, changing the scene to the correct one
 public class DBUtils {
@@ -47,6 +48,7 @@ public class DBUtils {
                 alert.setContentText("Cannot use email. Already under a registered account.");
                 alert.show();
             } else {
+                /*
                 psInsert = connection.prepareStatement("INSERT INTO Client (firstName, lastName, dateOfBirth, phoneNumber, email, password VALUES (?, ?, ?, ?, ?, ?)");
                 psInsert.setString(2, firstName);
                 psInsert.setString(3, lastName);
@@ -57,6 +59,11 @@ public class DBUtils {
                 psInsert.executeUpdate();
 
                 changeScene(event, ""); //signed in scene
+
+                 */
+                LocalDate date = dateOfBirth.getValue();
+                Client client = new Client(firstName, lastName, email, phoneNumber, password, date);
+                client.insert(connection);
             }
         } catch (SQLException e) {
             e.printStackTrace();

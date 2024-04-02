@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -26,9 +27,11 @@ public class MainApp extends Application {
             connection = DriverManager.getConnection(Database.connectionString);
 
             Database.createTable(connection);
+
             Client client1 = new Client("John", "Doe", "john.doe@example.com","763-111-1111", "password123", LocalDate.of(1990, 5, 15));
             client1.insert(connection);
             System.out.print("client ID = " + client1.getClientID());
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {

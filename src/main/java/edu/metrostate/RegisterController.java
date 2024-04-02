@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -40,7 +42,11 @@ public class RegisterController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(!firstNameTextField.getText().trim().isEmpty() && !lastNameTextField.getText().trim().isEmpty() && !phoneTextField.getText().trim().isEmpty() && !emailTextField.getText().trim().isEmpty() && !setPasswordField.getText().trim().isEmpty()){
-                    //Database.registerUser(actionEvent, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), setPasswordField.getText());
+                    try {
+                        DBUtils.registerUser(actionEvent, firstNameTextField.getText(), lastNameTextField.getText(), dateOfBirthPicker,  emailTextField.getText(), phoneTextField.getText(),  setPasswordField.getText());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     System.out.println("Please fill out all fields.");
                     Alert alert = new Alert(Alert.AlertType.ERROR);

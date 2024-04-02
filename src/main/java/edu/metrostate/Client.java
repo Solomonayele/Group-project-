@@ -1,8 +1,8 @@
 package edu.metrostate;
 
-import edu.metrostate.CloseQuietly;
 
-import java.nio.channels.ClosedChannelException;
+import javafx.scene.control.DatePicker;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Client extends Person {
     }
 
     public void  setDateOfBirth(LocalDate dateOfBirth){
-        this.dateOfBirth =dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setPastAppointments(List<Appointment> pastAppointments){
