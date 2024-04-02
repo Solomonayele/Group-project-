@@ -33,6 +33,8 @@ public class LoginController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 DBUtils.signInUser(actionEvent, emailTextField.getText(), passwordTextField.getText());
+                DBUtils.changeScene(actionEvent, "frontPage.fxml"); //insert tabular main page for fxml file
+
 
             }
         });
