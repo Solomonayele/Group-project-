@@ -1,5 +1,11 @@
 package edu.metrostate;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 public class Service {
     // Attributes
     private String name;
@@ -13,6 +19,11 @@ public class Service {
         this.price = price;
         this.description = description;
         this.lengthOfTime = lengthOfTime;
+    }
+
+    public Service(String name, String description){
+        this.name = name;
+        this.description = description;
     }
     public String getName() {
         return name;
@@ -40,5 +51,25 @@ public class Service {
     }
     public void setLengthOfTime(int lengthOfTime) {
         this.lengthOfTime = lengthOfTime;
+    }
+
+    public void insert(Connection connection) {
+        PreparedStatement statement = null;
+        try {
+            statement = insertServicesStatement(connection);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            CloseQuietly.close(statement);
+        }
+    }
+
+    public PreparedStatement insertServicesStatement(Connection connection) throws SQLException {
+        String sql = "INSERT INTO Services (stylist_name, service_offered) VALUES (?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, this.name);
+        preparedStatement.setString(2, this.description);
+        return preparedStatement;
     }
 }

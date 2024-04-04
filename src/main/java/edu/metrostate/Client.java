@@ -53,30 +53,12 @@ public class Client extends Person {
     public void setClientID(Integer id){
         this.clientID = id;
     }
-    public static PreparedStatement createClientTable(Connection connection) {
-        String sql = "CREATE TABLE IF NOT EXISTS Client (\n"
-                + "    clientID INTEGER PRIMARY KEY AUTOINCREMENT,\n"
-                + "    firstName VARCHAR(50),\n"
-                + "    lastName VARCHAR(50),\n"
-                + "    dateOfBirth DATE,\n"
-                + "    phoneNumber VARCHAR(15),\n"
-                + "    email VARCHAR(100),\n"
-                + "    password VARCHAR(25)\n"
-                + ");";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeUpdate();
-            return preparedStatement;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
 
     public Boolean insert(Connection connection) {
         PreparedStatement statement = null;
         try {
-            statement = insertStatement(connection);
+            statement = insertClientStatement(connection);
             Boolean result = statement.execute();
             if (result) {
                 ResultSet resultSet = statement.getResultSet();
@@ -94,7 +76,7 @@ public class Client extends Person {
         }
     }
 
-    public PreparedStatement insertStatement(Connection connection) throws SQLException {
+    public PreparedStatement insertClientStatement(Connection connection) throws SQLException {
         String sqlQuery = "INSERT INTO Client (firstName, lastName, dateOfBirth, phoneNumber, email, password) " +
                 "VALUES (?, ?, ?, ?, ?, ?) RETURNING clientID";
         PreparedStatement statement = connection.prepareStatement(sqlQuery);

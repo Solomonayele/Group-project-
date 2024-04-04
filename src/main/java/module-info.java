@@ -6,4 +6,6 @@ module App {
 
     opens edu.metrostate to javafx.fxml;
     exports edu.metrostate;
+    exports edu.metrostate.Database;
+    opens edu.metrostate.Database to javafx.fxml;
 }

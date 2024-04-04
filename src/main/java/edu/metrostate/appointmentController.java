@@ -21,7 +21,6 @@ public class appointmentController implements Initializable {
     @FXML
     private ComboBox<String> Category;
 
-
     @FXML
     private ComboBox<String> Service;
 
@@ -150,9 +149,6 @@ public class appointmentController implements Initializable {
             //save appointment
         }
     }
-
-
-
 
 
 
