@@ -41,11 +41,18 @@ public class RegisterController implements Initializable {
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(!firstNameTextField.getText().trim().isEmpty() && !lastNameTextField.getText().trim().isEmpty() && dateOfBirthPicker.getValue() != null && !phoneTextField.getText().trim().isEmpty() && !emailTextField.getText().trim().isEmpty() && !setPasswordField.getText().trim().isEmpty()){
-                    try {
-                        DBUtils.registerUser(actionEvent, firstNameTextField.getText(), lastNameTextField.getText(), dateOfBirthPicker,  emailTextField.getText(), phoneTextField.getText(),  setPasswordField.getText());
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                if(!firstNameTextField.getText().trim().isEmpty() && !lastNameTextField.getText().trim().isEmpty() && dateOfBirthPicker.getValue() != null && !phoneTextField.getText().trim().isEmpty() && !emailTextField.getText().trim().isEmpty() && !setPasswordField.getText().trim().isEmpty()) {
+                    if(setPasswordField.getText().matches(confirmPasswordField.getText())) {
+                        try {
+                            DBUtils.registerUser(actionEvent, firstNameTextField.getText(), lastNameTextField.getText(), dateOfBirthPicker, emailTextField.getText(), phoneTextField.getText(), setPasswordField.getText());
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Password fields do not match.");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Password fields do not match.");
+                        alert.show();
                     }
                 } else {
                     System.out.println("Please fill out all fields.");
