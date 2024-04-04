@@ -4,8 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -24,7 +23,8 @@ public class LoginController implements Initializable {
     private TextField emailTextField;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,9 +33,6 @@ public class LoginController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 DBUtils.signInUser(actionEvent, emailTextField.getText(), passwordTextField.getText());
-                DBUtils.changeScene(actionEvent, "frontPage.fxml"); //insert tabular main page for fxml file
-
-
             }
         });
 
@@ -45,6 +42,8 @@ public class LoginController implements Initializable {
                 DBUtils.changeScene(actionEvent, "register.fxml"); //insert tabular main page for fxml file
             }
         });
+
+
     }
 
 }

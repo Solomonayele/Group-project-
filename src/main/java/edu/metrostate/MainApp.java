@@ -28,9 +28,9 @@ public class MainApp extends Application {
 
             Database.createTable(connection);
 
-            Client client1 = new Client("John", "Doe", "john.doe@example.com","763-111-1111", "password123", LocalDate.of(1990, 5, 15));
+            /*Client client1 = new Client("John", "Doe", "john.doe@example.com","763-111-1111", "password123", LocalDate.of(1990, 5, 15));
             client1.insert(connection);
-            System.out.print("client ID = " + client1.getClientID());
+            System.out.print("client ID = " + client1.getClientID());*/
 
         } catch (SQLException ex) {
             ex.printStackTrace();

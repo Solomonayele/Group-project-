@@ -28,9 +28,9 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField phoneTextField;
     @FXML
-    private TextField setPasswordField;
+    private PasswordField setPasswordField;
     @FXML
-    private TextField confirmPasswordField;
+    private PasswordField confirmPasswordField;
 
     @FXML
     private DatePicker dateOfBirthPicker;
@@ -41,11 +41,11 @@ public class RegisterController implements Initializable {
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(!firstNameTextField.getText().trim().isEmpty() && !lastNameTextField.getText().trim().isEmpty() && !phoneTextField.getText().trim().isEmpty() && !emailTextField.getText().trim().isEmpty() && !setPasswordField.getText().trim().isEmpty()){
+                if(!firstNameTextField.getText().trim().isEmpty() && !lastNameTextField.getText().trim().isEmpty() && dateOfBirthPicker.getValue() != null && !phoneTextField.getText().trim().isEmpty() && !emailTextField.getText().trim().isEmpty() && !setPasswordField.getText().trim().isEmpty()){
                     try {
                         DBUtils.registerUser(actionEvent, firstNameTextField.getText(), lastNameTextField.getText(), dateOfBirthPicker,  emailTextField.getText(), phoneTextField.getText(),  setPasswordField.getText());
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
                 } else {
                     System.out.println("Please fill out all fields.");
@@ -60,10 +60,9 @@ public class RegisterController implements Initializable {
         returnToLoginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                DBUtils.changeScene(actionEvent, "login.fxml"); //insert tabular main page for fxml file
+                DBUtils.changeScene(actionEvent, "login.fxml");
             }
         });
-    }
 
-   // public
+    }
 }
