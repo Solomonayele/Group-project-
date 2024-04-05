@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="A" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="927.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="217.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/9a61a2db321d9f99ea18edaf3291856e.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="217.0" fitWidth="207.0" layoutX="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/IMG_0221.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="217.0" fitWidth="185.0" layoutX="482.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/58ab54438d03bfa928abce2b55b58336.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="224.0" fitWidth="222.0" layoutX="687.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/download.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="234.0" fitWidth="366.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/images.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="234.0" fitWidth="230.0" layoutX="683.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/d466b4b888cb87accd8516c9c418e21e.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="241.0" fitWidth="200.0" layoutX="350.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="253.0" fitWidth="178.0" layoutX="230.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/thumbnail_IMG_1618.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="234.0" fitWidth="189.0" layoutX="450.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../picture/thumbnail_IMG_0479.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#fdfdfd" layoutX="2.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bouys" wrappingWidth="184.851856905967" />
+   </children>
+</AnchorPane>

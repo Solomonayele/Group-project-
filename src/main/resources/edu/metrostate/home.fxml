@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="A" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.Home">
+    <children>
+        <TabPane layoutX="36.0" layoutY="24.0" prefHeight="655.0" prefWidth="913.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="About Salon Scheduler">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+                            <children>
+                                <Text fill="WHITE" fontSmoothingType="LCD" layoutX="3.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salon Scheduler is a business organization owned by a group of classmates in order to render their service more effectively. This application has been created in order to keep track of our pass and future appointments records so that we can give our customers the best experience ever and a significant time management. It also gives our clients the ability to book their appointment ahead of time according to their availablity and that of our staff. As we say at SS, &quot;Nice Hair is Not By Mistake, It's By Appointment.&quot; We are here to render the best of our service to all visitors at your convinience." wrappingWidth="705.13671875">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <effect>
+                                        <ColorAdjust />
+                                    </effect>
+                                </Text>
+                                <Text fill="#ccb159" layoutX="23.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thank you for visiting salon Scheduler, we are looking foward to provide greater satisfaction than expected." wrappingWidth="685.9716796875">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Text>
+                                <ImageView fitHeight="277.0" fitWidth="248.0" layoutX="654.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@SalonBackground.jpg" />
+                           </image>
+                                </ImageView>
+                                <Label layoutX="53.0" layoutY="471.0" text="Contact Us" textFill="#0aafff">
+                           <font>
+                              <Font size="22.0" />
+                           </font></Label>
+                                <Text fill="WHITE" layoutX="64.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(612) 607-4733">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Text>
+                                <Text fill="WHITE" layoutX="64.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="salonscheduler@gmail.com">
+                           <font>
+                              <Font size="19.0" />
+                           </font></Text>
+                        <Label layoutX="222.0" layoutY="49.0" prefHeight="17.0" prefWidth="368.0" text="welcome to salon Scheduler" textAlignment="RIGHT" textFill="#ff9300">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="logOutID" layoutX="821.0" layoutY="14.0" style="-fx-background-color: orange;" text="Log out">
+                           <font>
+                              <Font name="Berlin Sans FB" size="20.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="SERVICES">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+                     <children>
+                         <ImageView fitHeight="217.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@9a61a2db321d9f99ea18edaf3291856e.jpg" />
+                           </image>
+                         </ImageView>
+                         <ImageView fitHeight="217.0" fitWidth="207.0" layoutX="227.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@IMG_0221.jpg" />
+                           </image>
+                         </ImageView>
+                         <ImageView fitHeight="217.0" fitWidth="185.0" layoutX="482.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@58ab54438d03bfa928abce2b55b58336.jpg" />
+                           </image>
+                         </ImageView>
+                         <ImageView fitHeight="224.0" fitWidth="222.0" layoutX="687.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@download.jpg" />
+                           </image>
+                         </ImageView>
+                         <ImageView fitHeight="234.0" fitWidth="366.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images.jpg" />
+                           </image>
+                         </ImageView>
+                         <ImageView fitHeight="234.0" fitWidth="230.0" layoutX="669.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@d466b4b888cb87accd8516c9c418e21e.jpg" />
+                             </image>
+                         </ImageView>
+                         <ImageView fitHeight="241.0" fitWidth="200.0" layoutX="350.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="215.0" />
+                         <ImageView fitHeight="253.0" fitWidth="178.0" layoutX="227.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@thumbnail_IMG_1618.jpg" />
+                             </image>
+                         </ImageView>
+                         <ImageView fitHeight="234.0" fitWidth="189.0" layoutX="442.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@thumbnail_IMG_0479.jpg" />
+                           </image>
+                         </ImageView>
+                        <Button fx:id="bookApptID" layoutX="367.0" layoutY="587.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Book Appointment">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Button>
+                        <Label layoutX="44.0" layoutY="236.0" text="Large Men's braid, $60" textFill="WHITE" />
+                        <Label layoutX="234.0" layoutY="236.0" text="Ponytail, with curly extensions, $120" textFill="WHITE" />
+                        <Label layoutX="503.0" layoutY="237.0" text="tribal braids, $110" textFill="WHITE" />
+                        <Label layoutX="687.0" layoutY="236.0" text="two large lemonade braids, $140" textFill="WHITE" />
+                        <Label layoutX="458.0" layoutY="540.0" prefHeight="17.0" prefWidth="144.0" text="men's cornrows, $80" textFill="WHITE" />
+                        <Label layoutX="687.0" layoutY="539.0" text="men's lemonade braids, $70" textFill="WHITE" />
+                        <Label layoutX="223.0" layoutY="540.0" text="Gana Stich braids in pony tail, $150" textFill="WHITE" />
+                        <Label layoutX="20.0" layoutY="539.0" text="two jumbo tribal braids, $80" textFill="WHITE" />
+
+                     </children></AnchorPane>
+                        
+                    </content>
+                </Tab>
+                <Tab text="View Appointment">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+                            <children>
+                                <Button fx:id="cancelApptID" layoutX="746.0" layoutY="568.0" mnemonicParsing="false" text="Cancel Appointment" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
