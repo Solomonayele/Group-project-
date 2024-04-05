@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Service {
     // Attributes
@@ -72,4 +73,5 @@ public class Service {
         preparedStatement.setString(2, this.description);
         return preparedStatement;
     }
+
 }

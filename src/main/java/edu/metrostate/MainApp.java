@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
         new DBHelper(DriverManager.getConnection(Database.connectionString));
 
-        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("frontPage.fxml"));
         Scene scene = new Scene(root);
         loadStylesheetIntoScene(scene);
         stage.setScene(scene);

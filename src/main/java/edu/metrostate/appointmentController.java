@@ -12,8 +12,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class appointmentController implements Initializable {
@@ -146,6 +148,57 @@ public class appointmentController implements Initializable {
         window.setScene((new Scene(root)));
     }
 
+    //Unknown if this is the best spot for these
+    public static ArrayList<String> getServicesByStylist(Connection connection, String stylistName) {
+        ArrayList<String> services = new ArrayList<>();
+        String sql = "SELECT service_offered FROM Services WHERE stylist_name = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, stylistName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    services.add(resultSet.getString("service_offered"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return services;
+    }
+
+    public static ArrayList<String> getStylistNames(Connection connection) {
+        ArrayList<String> stylistNames = new ArrayList<>();
+        String sql = "SELECT DISTINCT stylist_name FROM Services";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                stylistNames.add(resultSet.getString("stylist_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stylistNames;
+    }
+
+    public boolean apptIsUnique(Connection connection, String stylistName, LocalDate appointmentDate, LocalTime appointmentTime) {
+        String sql = "SELECT COUNT(*) FROM appointments WHERE stylist = ? AND appointment_date = ? AND appointment_time = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, stylistName);
+            statement.setDate(2, java.sql.Date.valueOf(appointmentDate));
+            statement.setTime(3, Time.valueOf(appointmentTime));
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count == 0; // If count is 0, then the combination is unique
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return false; // Return false if there was an error or if the combination is not unique
+    }
 
 
 }
