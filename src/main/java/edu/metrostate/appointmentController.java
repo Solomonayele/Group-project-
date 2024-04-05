@@ -2,10 +2,15 @@ package edu.metrostate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,9 +24,6 @@ public class appointmentController implements Initializable {
     }
 
     @FXML
-    private ComboBox<String> Category;
-
-    @FXML
     private ComboBox<String> Service;
 
     @FXML
@@ -32,6 +34,9 @@ public class appointmentController implements Initializable {
 
     @FXML
     private Button nextButton;
+
+    @FXML
+    private Button BackToHome;
 
     @FXML
     private ChoiceBox<String>  startFrom;
@@ -69,12 +74,8 @@ public class appointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Stylist.getItems().addAll(stylistName);
-        Category.getItems().addAll(categoryName);
         Service.getItems().addAll(serviceName);
-
         startFrom.getItems().addAll(stime);
-        FinishBy.getItems().addAll(stime);
-
         nextButton.setOnAction(actionEvent -> {
             checkAppointment();
         });
@@ -85,15 +86,10 @@ public class appointmentController implements Initializable {
     //Handles if user misses a field
     private void checkAppointment() {
         StringBuilder missingFields = new StringBuilder();
-        String category = Category.getSelectionModel().selectedItemProperty().getValue();
         String service = Service.getSelectionModel().selectedItemProperty().getValue();
         String stylist = Stylist.getSelectionModel().selectedItemProperty().getValue();
         String startTime = startFrom.getSelectionModel().selectedItemProperty().getValue();
-        String endTime = FinishBy.getSelectionModel().selectedItemProperty().getValue();
         LocalDate date = datePicker.getValue();
-        if (category == null || category.isBlank()) {
-            missingFields.append("Category, ");
-        }
         if (service == null || service.isBlank()) {
             missingFields.append("Service, ");
         }
@@ -106,9 +102,7 @@ public class appointmentController implements Initializable {
         if (startTime == null || startTime.isBlank()) {
             missingFields.append("Start Time, ");
         }
-        if (endTime == null || endTime.isBlank()) {
-            missingFields.append("End Time, ");
-        }
+
         if (missingFields.length() > 0) {
 
 
@@ -125,20 +119,16 @@ public class appointmentController implements Initializable {
 
     //shows confirmation
     private void showConfirmAppointment() {
-        String category = Category.getSelectionModel().selectedItemProperty().getValue();
         String service = Service.getSelectionModel().selectedItemProperty().getValue();
         String stylist = Stylist.getSelectionModel().selectedItemProperty().getValue();
         LocalDate date = datePicker.getValue();
         String startTime = startFrom.getSelectionModel().selectedItemProperty().getValue();
-        String endTime = FinishBy.getSelectionModel().selectedItemProperty().getValue();
-
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "appointment", new ButtonType("Confirm"), ButtonType.CANCEL);
         alert.setTitle("Confirm Your Appointment");
-        //alert.setContentText("Please Confirm your appointment");
         alert.setHeaderText("Please Confirm your Appointment");
         alert.getDialogPane().setStyle("-fx-background-color:  #826603; -fx-font-size: 18px;");
-        alert.setContentText("\nCategory:  " + category + "\nService:  " + service + "\nStylist:  " + stylist + "\nDate of your Appointment:  " + date + "\nTime of your Appointment:  " + startTime + " To " + endTime);
+        alert.setContentText("\nService:  " + service + "\nStylist:  " + stylist + "\nDate of your Appointment:  " + date + "\nTime of your Appointment:  " + startTime );
         alert.showAndWait()
                 .filter(button -> button == new ButtonType("Confirm"))
                 .ifPresent(response -> saveAppointment());
@@ -148,6 +138,12 @@ public class appointmentController implements Initializable {
         if (appointmentListener != null) {
             //save appointment
         }
+    }
+
+    public void goTobackToHome() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Stage window = (Stage) BackToHome.getScene().getWindow();
+        window.setScene((new Scene(root)));
     }
 
 

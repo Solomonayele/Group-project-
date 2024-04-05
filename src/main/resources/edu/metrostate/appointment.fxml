@@ -11,30 +11,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.appointmentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0"  style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.appointmentController">
 
-    <AnchorPane prefHeight="600.0" prefWidth="800.0">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;">
         <children>
-            <ComboBox fx:id="Category" layoutX="26.0" layoutY="73.0" prefHeight="31.0" prefWidth="261.0" promptText="Select category" />
-            <Text fill="#826603" layoutX="28.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="170.21630859375" />
-            <ComboBox fx:id="Service" layoutX="26.0" layoutY="150.0" prefHeight="31.0" prefWidth="261.0" promptText="Select Service" />
-            <Text fill="#826603" layoutX="29.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service" wrappingWidth="128.21630859375" />
-            <ComboBox fx:id="Stylist" layoutX="28.0" layoutY="224.0" prefHeight="31.0" prefWidth="261.0" promptText="Select Stylist" />
-            <Text fill="#826603" layoutX="28.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stylist" wrappingWidth="105.0" />
-            <Text fill="#826603" layoutX="26.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Date" wrappingWidth="137.6220703125" />
+            <ComboBox fx:id="Service" layoutX="140.0" layoutY="54.0" prefHeight="52.0" prefWidth="355.0" promptText="Select Service" />
+            <Text fill="#806203" layoutX="43.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service" wrappingWidth="79.0">
+            <font>
+               <Font size="22.0" />
+            </font></Text>
+            <ComboBox fx:id="Stylist" layoutX="140.0" layoutY="138.0" prefHeight="52.0" prefWidth="355.0" promptText="Select Stylist" />
+            <Text fill="#826603" layoutX="47.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stylist" wrappingWidth="96.0">
+            <font>
+               <Font size="21.0" />
+            </font></Text>
+            <Text fill="#826603" layoutX="47.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="57.0">
+            <font>
+               <Font size="23.0" />
+            </font></Text>
             <Separator layoutY="343.0" prefHeight="7.0" prefWidth="600.0" />
-            <DatePicker fx:id="datePicker" layoutX="24.0" layoutY="306.0" onAction="#selectDate" prefHeight="31.0" prefWidth="138.0" promptText="Select Date" />
-            <Text fill="#826603" layoutX="250.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start From" wrappingWidth="74.951171875" />
-            <Text fill="#826603" layoutX="374.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finish by" />
+            <DatePicker fx:id="datePicker" layoutX="142.0" layoutY="211.0" onAction="#selectDate" prefHeight="52.0" prefWidth="355.0" promptText="Select Date" />
+            <Text fill="#826603" layoutX="47.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="285.951171875">
+            <font>
+               <Font size="23.0" />
+            </font></Text>
             <Button fx:id="nextButton" layoutX="501.0" layoutY="349.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="85.0" style="-fx-background-color: #826603;" text="Next" />
             <Label layoutX="62.0" layoutY="22.0" />
-            <Text fill="#826603" layoutX="191.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" wrappingWidth="158.21630859375">
+            <Text fill="#826603" layoutX="190.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment" wrappingWidth="188.21630859375">
                 <font>
-                    <Font size="19.0" />
+                    <Font size="23.0" />
                 </font>
             </Text>
-            <ChoiceBox fx:id="startFrom" layoutX="249.0" layoutY="309.0" prefHeight="25.0" prefWidth="75.0" />
-            <ChoiceBox fx:id="FinishBy" layoutX="375.0" layoutY="309.0" prefHeight="25.0" prefWidth="75.0" />
+            <ChoiceBox fx:id="startFrom" layoutX="140.0" layoutY="283.0" prefHeight="52.0" prefWidth="355.0" />
+         <Separator layoutX="184.0" layoutY="31.0" prefWidth="200.0" style="-fx-background-color: #826603;" />
+         <Button fx:id="BackToHome" layoutX="10.0" layoutY="350.0" mnemonicParsing="false" onAction="#goTobackToHome" prefHeight="37.0" prefWidth="85.0" style="-fx-background-color: #826603;" text="Back" />
         </children>
     </AnchorPane>
 </VBox>
