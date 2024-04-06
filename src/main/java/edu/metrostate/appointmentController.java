@@ -1,5 +1,6 @@
 package edu.metrostate;
 
+import edu.metrostate.Database.DBHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,15 +9,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import java.sql.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.ResourceBundle;
+import edu.metrostate.Service;
+import edu.metrostate.Appointment;
+import edu.metrostate.Database.DBHelper;
+
+import static edu.metrostate.Database.DBHelper.connection;
+
+
+//import static edu.metrostate.Database.DBHelper.connection;
 
 public class appointmentController implements Initializable {
 
@@ -44,20 +56,27 @@ public class appointmentController implements Initializable {
     private ChoiceBox<String>  startFrom;
 
     @FXML
-    private ChoiceBox<String>  FinishBy;
     private AppointmentListener appointmentListener;
 
     public void setNextListener(AppointmentListener appointmentListener){
         this.appointmentListener = appointmentListener;
     }
 
-
-    String[] categoryName = {"Hair","Makeup","massage"};
-    String[] serviceName ={"hair cut", "Hair braid", "makeup"};
-    String[] stylistName= {"Neimo","Myriam", "Solmon","Julia", "Logan"};
     String[] stime = {"9:00 am", "10:00 am","11:00 am", "12:00 pm", "1:00 pm" ,"2:00 pm" , "3:00 pm" ,"4:00 pm" , "2:00 pm" ,"3:00 pm" ,"4:00 pm"};
 
 
+    public void populateServiceDescriptions() {
+        List<String> services = DBHelper.fetchServiceDescriptions();
+        Service.getItems().clear(); // Clear existing items
+        Service.getItems().addAll(services);
+    }
+
+    public void populateStylist(){
+        List<String> stylistname = DBHelper.fetchStylistNames();
+        Stylist.getItems().clear(); // Clear existing items
+        Stylist.getItems().addAll(stylistname);
+
+    }
 
 
 
@@ -75,8 +94,10 @@ public class appointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Stylist.getItems().addAll(stylistName);
-        Service.getItems().addAll(serviceName);
+
+        populateServiceDescriptions();
+        populateStylist();
+        //Service.getItems().addAll(serviceName);
         startFrom.getItems().addAll(stime);
         nextButton.setOnAction(actionEvent -> {
             checkAppointment();
@@ -138,47 +159,29 @@ public class appointmentController implements Initializable {
 
     private void saveAppointment() {
         if (appointmentListener != null) {
-            //save appointment
+            LocalDate date = datePicker.getValue();
+            LocalTime time = LocalTime.parse(startFrom.getSelectionModel().selectedItemProperty().getValue(), DateTimeFormatter.ofPattern("h:mm a"));
+            String stylistName = Stylist.getSelectionModel().selectedItemProperty().getValue();
+            String service = Service.getSelectionModel().selectedItemProperty().getValue();
+            int clientId = 1; // Assume this is determined somehow
+
+            Appointment apt = new Appointment(date, time, stylistName, service, clientId);
+            apt.insert(connection); // Assuming you have access to a connection object or it's managed inside the method
+
+            // Notify the listener that the appointment has been saved
+            appointmentListener.onnextComplete();
+
+            // Show confirmation message to the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Appointment saved successfully!");
+            alert.showAndWait();
         }
     }
+
 
     public void goTobackToHome() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         Stage window = (Stage) BackToHome.getScene().getWindow();
         window.setScene((new Scene(root)));
-    }
-
-    //Unknown if this is the best spot for these
-    public static ArrayList<String> getServicesByStylist(Connection connection, String stylistName) {
-        ArrayList<String> services = new ArrayList<>();
-        String sql = "SELECT service_offered FROM Services WHERE stylist_name = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, stylistName);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    services.add(resultSet.getString("service_offered"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return services;
-    }
-
-    public static ArrayList<String> getStylistNames(Connection connection) {
-        ArrayList<String> stylistNames = new ArrayList<>();
-        String sql = "SELECT DISTINCT stylist_name FROM Services";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                stylistNames.add(resultSet.getString("stylist_name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return stylistNames;
     }
 
     public boolean apptIsUnique(Connection connection, String stylistName, LocalDate appointmentDate, LocalTime appointmentTime) {
@@ -202,3 +205,6 @@ public class appointmentController implements Initializable {
 
 
 }
+
+
+

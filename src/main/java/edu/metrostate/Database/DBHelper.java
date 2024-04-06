@@ -1,19 +1,20 @@
 package edu.metrostate.Database;
 
-import edu.metrostate.Appointment;
-import edu.metrostate.Client;
-import edu.metrostate.CloseQuietly;
-import edu.metrostate.Service;
+import edu.metrostate.*;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 
 //Creates tables in one method to avoid clutter.
 public class DBHelper {
 
-    private Connection connection = null;
+    public static Connection connection = null;
     public DBHelper(Connection connection) throws SQLException {
         this.connection = connection;
         createTables();
@@ -96,7 +97,9 @@ public class DBHelper {
             }
 
             if (isTableEmpty(connection, "appointment")) {
+
                 populateAppointmentTable();
+
             }
             if (isTableEmpty(connection, "client")) {
                 populateClientTable();
@@ -115,12 +118,34 @@ public class DBHelper {
     public void populateAppointmentTable() throws SQLException {
         Appointment apt = new Appointment(LocalDate.of(2024, 5, 1), LocalTime.of(12, 40), "Sandra", "trim", 1  );
         apt.insert(connection);
+
     }
 
     public void populateServicesTable() throws SQLException {
-        Service service = new Service("June", "shave");
-        service.insert(connection);
-    }
+
+       List<Service> services = new ArrayList<>();
+        services.add(new Service("Naima", "Large Men's Braid, $60"));
+        services.add(new Service("Naima", "Ponytail with Curly Extensions, $120"));
+        services.add(new Service("Myriam", "Tribal Braids, $110"));
+        services.add(new Service("Myriam", "Two Large Lemonade Braids, $140"));
+        services.add(new Service("Julia", "Two Jumbo Tribal Braids, $120"));
+        services.add(new Service("Julia", "Gana StiCh Braids In Pony Tail, $150"));
+        services.add(new Service("Naima", "Men's Cornrows, $80"));
+        services.add(new Service("Solman", "Men's Lemonade Braids, $70"));
+        services.add(new Service("Logan", "Men's Haircut, $40"));
+        services.add(new Service("Logan", "Men's Haircut Fade, $35"));
+        services.add(new Service("Solman", "Men's Haircut Afro, $50"));
+
+
+
+        for (Service service : services) {
+            service.insert(connection);
+        }
+
+
+        }
+
+
 
     public static boolean isTableEmpty(Connection connection, String tableName) {
         String sql = "SELECT COUNT(*) AS count FROM " + tableName;
@@ -135,5 +160,40 @@ public class DBHelper {
         }
         return true;
     }
+
+    public static List<String> fetchServiceDescriptions() {
+        List<String> descriptions = new ArrayList<>();
+        String sql = "SELECT DISTINCT service_offered FROM Services";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                descriptions.add(resultSet.getString("service_offered"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching service descriptions: " + e.getMessage());
+        }
+        return descriptions;
+    }
+
+    public static List<String> fetchStylistNames() {
+        List<String> stylistnames = new ArrayList<>();
+        String sql = "SELECT DISTINCT stylist_name FROM Services";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                stylistnames.add(resultSet.getString("stylist_name"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching service descriptions: " + e.getMessage());
+
+        }
+        return stylistnames;
+    }
+
+
+
+
+
+
 
 }

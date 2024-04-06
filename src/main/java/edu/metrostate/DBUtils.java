@@ -55,7 +55,7 @@ public class DBUtils {
                 Client client = new Client(firstName, lastName, email, phoneNumber, password, date);
                 client.insert(connection);
 
-                changeScene(event, "appointment.fxml"); //signed in scene
+                changeScene(event, "home.fxml"); //signed in scene
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,7 +104,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changeScene(event, "appointment.fxml");
+                        changeScene(event, "home.fxml");
                     } else {
                         System.out.println("Incorrect password.");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
