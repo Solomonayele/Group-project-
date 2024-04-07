@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0"  style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.appointmentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.appointmentController">
 
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;">
         <children>
@@ -42,9 +41,9 @@
                     <Font size="23.0" />
                 </font>
             </Text>
-            <ChoiceBox fx:id="startFrom" layoutX="140.0" layoutY="283.0" prefHeight="52.0" prefWidth="355.0" />
          <Separator layoutX="184.0" layoutY="31.0" prefWidth="200.0" style="-fx-background-color: #826603;" />
          <Button fx:id="BackToHome" layoutX="10.0" layoutY="350.0" mnemonicParsing="false" onAction="#goTobackToHome" prefHeight="37.0" prefWidth="85.0" style="-fx-background-color: #826603;" text="Back" />
+         <ComboBox fx:id="startFrom" layoutX="143.0" layoutY="281.0" prefHeight="52.0" prefWidth="355.0" promptText="Select Time" />
         </children>
     </AnchorPane>
 </VBox>

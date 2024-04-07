@@ -190,6 +190,33 @@ public class DBHelper {
         return stylistnames;
     }
 
+    // fetchs appointment based on client ID
+    public static List<Appointment> fetchAppointmentsByClientId(int clientId) {
+        List<Appointment> appointments = new ArrayList<>();
+        String sql = "SELECT * FROM Appointment WHERE client_id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, clientId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    LocalDate date = resultSet.getDate("appointment_date").toLocalDate();
+                    LocalTime time = resultSet.getTime("appointment_time").toLocalTime();
+                    String stylistName = resultSet.getString("stylist_name");
+                    String serviceDesc = resultSet.getString("service");
+                    Appointment appointment = new Appointment(date, time, stylistName, serviceDesc, clientId);
+                    appointments.add(appointment);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointments;
+    }
+
+
+
+
+
 
 
 
