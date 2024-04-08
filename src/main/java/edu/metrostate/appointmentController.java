@@ -60,6 +60,8 @@ public class appointmentController implements Initializable {
 
     }
 
+
+
     @FXML
     void selectDate(ActionEvent event) {
         datePicker.getValue().toString();

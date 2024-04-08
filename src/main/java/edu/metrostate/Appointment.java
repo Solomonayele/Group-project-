@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Appointment {
-    private static LocalDate datePicker;
+    private  LocalDate datePicker;
     private LocalTime timePicker;
     private List<Stylist> stylist;
     private List<Service> service;
@@ -38,7 +38,7 @@ public class Appointment {
     public LocalTime getTimePicker() {
         return timePicker;
     }
-    public static LocalDate getDatePicker(){
+    public  LocalDate getDatePicker(){
         return datePicker;
     }
     public List<Stylist> getStylist(){

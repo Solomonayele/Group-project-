@@ -8,19 +8,19 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="A" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.metrostate.Home">
     <children>
         <TabPane layoutX="36.0" layoutY="24.0" prefHeight="655.0" prefWidth="913.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="About Salon Scheduler">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
+                        <AnchorPane  minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                             <children>
                                 <Text fill="WHITE" fontSmoothingType="LCD" layoutX="3.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salon Scheduler is a business organization owned by a group of classmates in order to render their service more effectively. This application has been created in order to keep track of our pass and future appointments records so that we can give our customers the best experience ever and a significant time management. It also gives our clients the ability to book their appointment ahead of time according to their availablity and that of our staff. As we say at SS, &quot;Nice Hair is Not By Mistake, It's By Appointment.&quot; We are here to render the best of our service to all visitors at your convinience." wrappingWidth="705.13671875">
                                     <font>
@@ -57,11 +57,7 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label fx:id="logOutID" layoutX="821.0" layoutY="14.0" style="-fx-background-color: orange;" text="Log out">
-                           <font>
-                              <Font name="Berlin Sans FB" size="20.0" />
-                           </font>
-                        </Label>
+                        <Button layoutX="804.0" layoutY="13.0" mnemonicParsing="false" onAction="#Logout" prefHeight="36.0" prefWidth="83.0" text="Log Out" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -132,15 +128,23 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="900.0">
                             <children>
-                                <!-- Replace TableView with a VBox for appointment details -->
-                                <VBox fx:id="appointmentsVBox" layoutX="50" layoutY="50" prefWidth="800.0" spacing="10">
-                                    <!-- Appointment details will be dynamically added here -->
-                                </VBox>
+                                <!-- TableView for appointment details -->
+                                <TableView fx:id="appointmentsTableView" layoutX="50" layoutY="50" prefWidth="800.0" prefHeight="500.0">
+                                    <columns>
+
+                                        <TableColumn fx:id="dateColumn" text="Date"/>
+                                        <TableColumn fx:id="timeColumn" text="Time"/>
+                                        <TableColumn fx:id="StylistColumn" text="Stylist"/>
+                                        <TableColumn fx:id="ServiceColumn" text="Service"/>
+
+                                    </columns>
+                                </TableView>
                                 <Button fx:id="cancelApptID" layoutX="746.0" layoutY="568.0" mnemonicParsing="false" text="Cancel Appointment" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
+
 
 
             </tabs>
