@@ -104,6 +104,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
+                        Client.setClientID(Client.retrieveClientIdByEmail(connection, email));
                         changeScene(event, "home.fxml");
                     } else {
                         System.out.println("Incorrect password.");
