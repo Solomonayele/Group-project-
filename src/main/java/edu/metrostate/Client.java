@@ -106,7 +106,6 @@ public class Client extends Person {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return clientId;
     }
 

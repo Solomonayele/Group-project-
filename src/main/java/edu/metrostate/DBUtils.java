@@ -54,7 +54,6 @@ public class DBUtils {
                 LocalDate date = dateOfBirth.getValue();
                 Client client = new Client(firstName, lastName, email, phoneNumber, password, date);
                 client.insert(connection);
-
                 changeScene(event, "home.fxml"); //signed in scene
             }
         } catch (SQLException e) {
