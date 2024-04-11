@@ -60,8 +60,6 @@ public class appointmentController implements Initializable {
 
     }
 
-
-
     @FXML
     void selectDate(ActionEvent event) {
         datePicker.getValue().toString();
@@ -74,20 +72,31 @@ public class appointmentController implements Initializable {
         window.setScene((new Scene(root)));
     }
 
+    public void populateTimeSlots(LocalDate date, String stylistName) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+        Connection connection = null;
+        connection = DriverManager.getConnection(Database.connectionString);
+
+
+        Connection finalConnection = connection;
+        Set<LocalTime> availableTimes = Arrays.stream(stime)
+                .map(timeStr -> LocalTime.parse(timeStr.toUpperCase(), formatter))
+                .filter(time -> apptIsUnique(stylistName, date, time, finalConnection))
+                .collect(Collectors.toCollection(TreeSet::new));
+
+        startFrom.getItems().clear();
+        startFrom.getItems().addAll(availableTimes);
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize  (URL url, ResourceBundle resourceBundle) {
-
-        populateServiceDescriptions();
-        populateStylist();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
-        Set<LocalTime> times = Arrays.stream(stime)
-                .map(timeStr -> LocalTime.parse(timeStr.toUpperCase(), formatter))
-                .collect(Collectors.toCollection(() -> new TreeSet<>())); // Use TreeSet for unique and sorted
-
-        // Populate startFrom with LocalTime objects
-        startFrom.getItems().addAll(times);
-
         datePicker.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -96,7 +105,35 @@ public class appointmentController implements Initializable {
                 setDisable(empty || date.compareTo(today) < 0);
             }
         });
+        datePicker.setOnAction(event -> {
+            LocalDate selectedDate = datePicker.getValue();
+            String selectedStylist = Stylist.getSelectionModel().getSelectedItem();
+            if (selectedDate != null && selectedStylist != null) {
+                try {
+                    populateTimeSlots(selectedDate, selectedStylist);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
+        Stylist.setOnAction(event -> {
+            LocalDate selectedDate = datePicker.getValue();
+            String selectedStylist = Stylist.getSelectionModel().getSelectedItem();
+            if (selectedDate != null && selectedStylist != null) {
+                try {
+                    populateTimeSlots(selectedDate, selectedStylist);
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
+
+        populateServiceDescriptions();
+        populateStylist();
 
         nextButton.setOnAction(actionEvent -> {
             try {
@@ -167,22 +204,24 @@ public class appointmentController implements Initializable {
         } else {
             System.out.println("canceled");
         }
-        alert.showAndWait();
+
 
     }
 
     // saves Appointment
     private void saveAppointment() throws SQLException {
-            LocalDate date = datePicker.getValue();
-            LocalTime time = startFrom.getSelectionModel().getSelectedItem();
-            String stylistName = Stylist.getSelectionModel().selectedItemProperty().getValue();
-            String service = Service.getSelectionModel().selectedItemProperty().getValue();
+        LocalDate date = datePicker.getValue();
+        LocalTime time = startFrom.getSelectionModel().getSelectedItem();
+        String stylistName = Stylist.getSelectionModel().selectedItemProperty().getValue();
+        String service = Service.getSelectionModel().selectedItemProperty().getValue();
 
-            int clientId = 1; // we should find a way to determine the client ID
 
-            Appointment apt = new Appointment(date, time, stylistName, service, clientId);
-            Connection connection = null;
-            connection = DriverManager.getConnection(Database.connectionString);
+        int clientId = 1; // we should find a way to determine the client ID
+
+        Appointment apt = new Appointment(date, time, stylistName, service, clientId);
+        Connection connection = null;
+        connection = DriverManager.getConnection(Database.connectionString);
+        if (apptIsUnique(stylistName, date, time, connection)) {
             apt.insert(connection);
 
             // Show confirmation message to the user
@@ -190,12 +229,17 @@ public class appointmentController implements Initializable {
             alert.setTitle("Confirmation");
             alert.setHeaderText("Thank You For booking with us!");
             alert.showAndWait();
+        } else{
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "This time slot is already booked. Please choose another time.");
+            errorAlert.setTitle("Booking Error");
+            errorAlert.setHeaderText("Time Slot Unavailable");
+            errorAlert.showAndWait();
         }
+           connection.close();
+    }
 
-
-
-    public boolean apptIsUnique(Connection connection, String stylistName, LocalDate appointmentDate, LocalTime appointmentTime) {
-        String sql = "SELECT COUNT(*) FROM appointments WHERE stylist = ? AND appointment_date = ? AND appointment_time = ?";
+    public boolean apptIsUnique(String stylistName, LocalDate appointmentDate, LocalTime appointmentTime, Connection connection) {
+        String sql = "SELECT COUNT(*) FROM appointment WHERE stylist_name = ? AND appointment_date = ? AND appointment_time = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, stylistName);

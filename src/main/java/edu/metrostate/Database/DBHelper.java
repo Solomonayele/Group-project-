@@ -190,6 +190,7 @@ public class DBHelper {
         return stylistnames;
     }
 
+
     // fetchs appointment based on client ID
     public static List<Appointment> fetchAppointmentsByClientId(int clientId) {
         List<Appointment> appointments = new ArrayList<>();
