@@ -7,8 +7,33 @@ MainApp class and the fxml and css files. The css and fxml files, in addition to
 are contained within the resources directory in the main folder. The java classes are contained in the Java directory
 within the SRC file.
 
+The code is structured in a manner that the java classes of our objects are used in the creation of tables for the database.
+These include 'Appointment', 'Client', 'Person', 'Service', and 'Stylist'. The fxml scenes have controllers to provide 
+functionality and direction. A Utility class titled 'DBUtils' was created to better organize the concepts of client registration, 
+login, and scene change.
+
+The non-functional requirements the application meets and the classes that satisfy them:
+1) Incorporate measures for user privacy and data security - This was best accomplished through the utilization of 
+the password fields for the LoginController and the RegisterController classes.
+2) Straightforward design principles for a simple user interface - The Controller classes are another great example of 
+this, as well as our fxml files that are designed for simple direction.
+3) Prioritize reliability and the handling of errors and exceptions - Within the DBUtils class, there are many examples of error 
+handling. For example, if a field is not entered or if a user enters the incorrect login information.
+4) Scalable to allow for an increase in user numbers and service expansion - The use of the database and the according tables 
+best show this requirement. Organization of increasing user numbers is made easy with the clientID parameter.
+
+The functional requirements the application meets and the classes that satisfy them:
+1) Allow returning users to login to their accounts - This is met through the LoginController and DBUtils classes.
+2) Allow new users to create/register a new account - Met through the RegisterController, DBUtils, and creation of a CLient 
+within a table for the database.
+3) display the appointment/service/staff options - Met with the Appointment table and the AppointmentController class.
+4) Allow the client to view or modify their appointments - Satisfied with the Home class and the AppointmentController class.
+5) Allow for appointment cancellation - Satisfied with the Home class and information stored in the database.
+6) Allow for users to logout of their account - Satisfied with the Home class.
+
 This project is most easily accessible with the Intellij IDEA IDE and has been tested with the 
 [community edition](https://www.jetbrains.com/idea/download).
+
 
 In order to run this application, you will need to download and unzip the associated .zip file. Once the file has
 been unzipped, in the top right of the IntelliJ Idea welcome screen click "Open." This should open a window wherein
