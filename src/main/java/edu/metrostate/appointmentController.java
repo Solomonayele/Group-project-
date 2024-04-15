@@ -166,7 +166,7 @@ public class appointmentController implements Initializable {
         } else {
             System.out.println("canceled");
         }
-        alert.showAndWait();
+        //alert.showAndWait();
 
     }
 
@@ -178,7 +178,7 @@ public class appointmentController implements Initializable {
             String service = Service.getSelectionModel().selectedItemProperty().getValue();
 
             //The client ID got on registration or login
-            int clientId = Client.getClientID();
+            int clientId = Client.clientID;
 
             Appointment apt = new Appointment(date, time, stylistName, service, clientId);
             Connection connection = null;

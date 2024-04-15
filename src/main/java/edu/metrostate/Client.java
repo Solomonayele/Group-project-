@@ -13,7 +13,8 @@ public class Client extends Person {
     private LocalDate dateOfBirth;
     private List<Appointment> pastAppointments;
     private List<Appointment> futureAppointments;
-    private static Integer clientID;
+    public static Integer clientID;
+
 
     public Client(String firstName, String lastName, String email, String phoneNumber, String password, LocalDate dateOfBirth){
         super(firstName, lastName, email, phoneNumber, password);
@@ -24,6 +25,7 @@ public class Client extends Person {
     }
     public LocalDate getDateOfBirth(){
         return dateOfBirth;
+
     }
     public List<Appointment> getPastAppointments() {
         return pastAppointments;
@@ -45,7 +47,7 @@ public class Client extends Person {
         this.futureAppointments = futureAppointments;
     }
 
-    public static Integer getClientID(){
+    public Integer getClientID(){
         return clientID;
     }
 
@@ -62,7 +64,7 @@ public class Client extends Person {
             if (result) {
                 ResultSet resultSet = statement.getResultSet();
                 Integer id = resultSet.getInt("clientID");
-                this.setClientID(id);
+                setClientID(id);
                 CloseQuietly.close(resultSet);
                 return true;
             }
@@ -87,6 +89,24 @@ public class Client extends Person {
         statement.setString(5, this.getEmail());
         statement.setString(6, this.getPassword());
         return statement;
+    }
+
+    public static Integer retrieveClientIdByEmail(Connection connection, String email) {
+        String sql = "SELECT clientID FROM Client WHERE email = ?";
+        int clientId = -1; // Default if client ID is not found
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, email);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    clientId = resultSet.getInt("clientID");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clientId;
     }
 
 

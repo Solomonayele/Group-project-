@@ -62,7 +62,7 @@ public class Home {
     public void initialize() throws SQLException {
 
         //Client.getClientID();
-        displayAppointment(Client.getClientID());
+        displayAppointment(Client.clientID);
 
         cancelApptID.setOnMouseClicked((mouseEvent) -> {
             try {
@@ -73,7 +73,7 @@ public class Home {
         });
 
         refreshTable.setOnAction(actionEvent -> {
-            displayAppointment(Client.getClientID());
+            displayAppointment(Client.clientID);
         });
     }
 
@@ -104,7 +104,7 @@ public class Home {
             preparedStatement.setDate(2, java.sql.Date.valueOf(date));
             preparedStatement.executeUpdate();
 
-            displayAppointment(Client.getClientID());
+            displayAppointment(Client.clientID);
         }catch (SQLException e){
             throw new RuntimeException("Error deleting appointment", e);
         }
@@ -117,7 +117,7 @@ public class Home {
         Parent root = FXMLLoader.load(getClass().getResource("appointment.fxml"));
         Stage window = (Stage) bookApptID.getScene().getWindow();
         window.setScene((new Scene(root)));
-        displayAppointment(Client.getClientID());
+        displayAppointment(Client.clientID);
     }
 
     public void Logout() throws IOException {
