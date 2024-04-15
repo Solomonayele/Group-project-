@@ -13,12 +13,12 @@ public class Client extends Person {
     private LocalDate dateOfBirth;
     private List<Appointment> pastAppointments;
     private List<Appointment> futureAppointments;
-    private Integer clientID;
+    private static Integer clientID;
 
     public Client(String firstName, String lastName, String email, String phoneNumber, String password, LocalDate dateOfBirth){
         super(firstName, lastName, email, phoneNumber, password);
         this.dateOfBirth = dateOfBirth;
-        this.clientID = null;
+        clientID = null;
         this.pastAppointments = new ArrayList<Appointment>();
         this.futureAppointments =  new ArrayList <Appointment>();
     }
@@ -46,12 +46,12 @@ public class Client extends Person {
         this.futureAppointments = futureAppointments;
     }
 
-    public Integer getClientID(){
+    public static Integer getClientID(){
         return clientID;
     }
 
-    public void setClientID(Integer id){
-        this.clientID = id;
+    public static void setClientID(Integer id){
+        clientID = id;
     }
 
 

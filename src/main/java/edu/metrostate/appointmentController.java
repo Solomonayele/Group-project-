@@ -178,7 +178,8 @@ public class appointmentController implements Initializable {
             String stylistName = Stylist.getSelectionModel().selectedItemProperty().getValue();
             String service = Service.getSelectionModel().selectedItemProperty().getValue();
 
-            int clientId = 1; // we should find a way to determine the client ID
+            //The client ID got on registration or login
+            int clientId = Client.getClientID();
 
             Appointment apt = new Appointment(date, time, stylistName, service, clientId);
             Connection connection = null;

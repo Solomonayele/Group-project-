@@ -91,7 +91,7 @@ public class DBUtils {
 
         try {
             connection = DriverManager.getConnection(Database.connectionString);
-            preparedStatement = connection.prepareStatement("SElECT password FROM Client WHERE email = ?");
+            preparedStatement = connection.prepareStatement("SElECT password, clientID FROM Client WHERE email = ?");
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
 
@@ -103,8 +103,11 @@ public class DBUtils {
             } else {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
+                    int retrievedId = resultSet.getInt("clientID");
                     if (retrievedPassword.equals(password)) {
+                        Client.setClientID(retrievedId);
                         changeScene(event, "home.fxml");
+
                     } else {
                         System.out.println("Incorrect password.");
                         Alert alert = new Alert(Alert.AlertType.ERROR);

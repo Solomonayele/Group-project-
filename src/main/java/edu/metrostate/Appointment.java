@@ -51,6 +51,30 @@ public class Appointment {
         return client;
     }
 
+    public String getStylistName() {
+        return stylistName;
+    }
+
+    public String getServiceDesc() {
+        return serviceDesc;
+    }
+
+    public void setServiceDesc(String serviceDesc) {
+        this.serviceDesc = serviceDesc;
+    }
+
+    public void setStylistName(String stylistName) {
+        this.stylistName = stylistName;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
     public void setDatePicker(LocalDate datePicker) {
         this.datePicker = datePicker;
     }

@@ -1,6 +1,8 @@
 package edu.metrostate.Database;
 
 import edu.metrostate.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -190,37 +192,26 @@ public class DBHelper {
         return stylistnames;
     }
 
-    // fetchs appointment based on client ID
-    public static List<Appointment> fetchAppointmentsByClientId(int clientId) {
-        List<Appointment> appointments = new ArrayList<>();
-        String sql = "SELECT * FROM Appointment WHERE client_id = ?";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, clientId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    LocalDate date = resultSet.getDate("appointment_date").toLocalDate();
-                    LocalTime time = resultSet.getTime("appointment_time").toLocalTime();
-                    String stylistName = resultSet.getString("stylist_name");
-                    String serviceDesc = resultSet.getString("service");
-                    Appointment appointment = new Appointment(date, time, stylistName, serviceDesc, clientId);
-                    appointments.add(appointment);
+    public static ObservableList<Appointment> fetchAppointmentByClientID(int clientID){
+        ObservableList<Appointment> apptList = FXCollections.observableArrayList();
+        String ps = "SELECT * FROM Appointment WHERE client_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ps)) {
+            preparedStatement.setInt(1, clientID);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    LocalDate date = rs.getDate("appointment_date").toLocalDate();
+                    LocalTime time = rs.getTime("appointment_time").toLocalTime();
+                    String stylistName = rs.getString("stylist_name");
+                    String serviceDesc = rs.getString("service");
+                    Appointment appointment = new Appointment(date, time, stylistName, serviceDesc, clientID);
+                    apptList.add(appointment);
                 }
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
-        return appointments;
+        return apptList;
+
     }
-
-
-
-
-
-
-
-
-
-
 
 }
