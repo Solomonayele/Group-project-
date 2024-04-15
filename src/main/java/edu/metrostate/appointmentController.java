@@ -158,7 +158,6 @@ public class appointmentController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         ButtonType button = result.orElse(ButtonType.OK);
 
-
         if (button == ButtonType.OK) {
             Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
             Stage window = (Stage) BackToHome.getScene().getWindow();

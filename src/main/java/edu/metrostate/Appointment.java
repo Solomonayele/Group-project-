@@ -66,7 +66,6 @@ public class Appointment {
     public void setStylistName(String stylistName) {
         this.stylistName = stylistName;
     }
-
     public void setClientId(int clientId) {
         this.clientId = clientId;
     }

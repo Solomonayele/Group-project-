@@ -79,7 +79,6 @@ public class Home {
 
     public void displayAppointment(int clientID){
 
-
         idColumn.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("clientId"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<Appointment, LocalDate>("datePicker"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Appointment,LocalTime>("timePicker"));

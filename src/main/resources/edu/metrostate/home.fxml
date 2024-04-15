@@ -130,7 +130,6 @@
                                 <!-- TableView for appointment details -->
                                 <TableView fx:id="appointmentTableView" layoutX="50" layoutY="50" prefHeight="500.0" prefWidth="800.0">
                                     <columns>
-
                                         <TableColumn fx:id="dateColumn" text="Date" />
                                         <TableColumn fx:id="timeColumn" text="Time" />
                                         <TableColumn fx:id="StylistColumn" text="Stylist" />

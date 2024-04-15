@@ -21,7 +21,6 @@ public class DBHelper {
         this.connection = connection;
         createTables();
         populateTables();
-
     }
 
     public void createTables() {

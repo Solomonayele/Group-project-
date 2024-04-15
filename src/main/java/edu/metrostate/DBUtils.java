@@ -26,7 +26,6 @@ public class DBUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

@@ -24,7 +24,6 @@ public class Client extends Person {
     }
     public LocalDate getDateOfBirth(){
         return dateOfBirth;
-
     }
     public List<Appointment> getPastAppointments() {
         return pastAppointments;
