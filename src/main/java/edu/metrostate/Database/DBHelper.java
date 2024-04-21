@@ -117,7 +117,7 @@ public class DBHelper {
         client1.insert(connection);
     }
     public void populateAppointmentTable() throws SQLException {
-        Appointment apt = new Appointment(LocalDate.of(2024, 5, 1), LocalTime.of(12, 40), "Sandra", "trim", 1  );
+        Appointment apt = new Appointment(LocalDate.of(2024, 5, 1), LocalTime.of(12, 40), "Logan", "Men's Haircut", 1  );
         apt.insert(connection);
 
     }

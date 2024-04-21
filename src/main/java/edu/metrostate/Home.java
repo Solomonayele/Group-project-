@@ -96,12 +96,14 @@ public class Home {
         try {
             appointID = appointmentTableView.getSelectionModel().getSelectedItem();
             connection = DriverManager.getConnection(Database.connectionString);
-            String sql = "DELETE FROM Appointment WHERE client_id = ? AND appointment_date = ?";
+            String sql = "DELETE FROM Appointment WHERE client_id = ? AND appointment_date = ? AND appointment_time = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             int clientId = appointID.getClientId();
             LocalDate date = appointID.getDatePicker();
+            LocalTime time = appointID.getTimePicker();
             preparedStatement.setInt(1, clientId);
             preparedStatement.setDate(2, java.sql.Date.valueOf(date));
+            preparedStatement.setTime(3, java.sql.Time.valueOf(time));
             preparedStatement.executeUpdate();
 
             displayAppointment(Client.clientID);
